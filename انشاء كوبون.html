@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء كوبون</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            direction: rtl;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .back-button {
+            background-color: #f44336;
+            color: white;
+            margin-left: 10px;
+        }
+        .coupon-code {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>إنشاء كوبون جديد</h1>
+
+        <!-- اختيار نوع الكوبون -->
+        <label for="couponType">نوع الكوبون:</label>
+        <select id="couponType" onchange="toggleCouponFields()">
+            <option value="discount">خصم</option>
+            <option value="fixedAmount">مبلغ ثابت</option>
+            <option value="inviteFriends">دعوة عدد من الأصدقاء</option>
+        </select>
+
+        <!-- حقل إدخال الخصم -->
+        <div id="discountField" style="display: none;">
+            <label for="discountAmount">نسبة الخصم (%):</label>
+            <input type="number" id="discountAmount" placeholder="أدخل نسبة الخصم">
+        </div>
+
+        <!-- حقل إدخال المبلغ الثابت -->
+        <div id="fixedAmountField" style="display: none;">
+            <label for="fixedAmount">مبلغ ثابت (بالريال):</label>
+            <input type="number" id="fixedAmount" placeholder="أدخل المبلغ">
+        </div>
+
+        <!-- حقل إدخال عدد الأصدقاء -->
+        <div id="inviteFriendsField" style="display: none;">
+            <label for="friendsNumber">عدد الأصدقاء:</label>
+            <input type="number" id="friendsNumber" placeholder="أدخل عدد الأصدقاء">
+        </div>
+
+        <!-- كود الكوبون -->
+        <label for="couponCode">كود الكوبون:</label>
+        <input type="text" id="couponCode" placeholder="سيتم توليد كود تلقائي" readonly>
+
+        <!-- أزرار -->
+        <button class="submit-button" onclick="generateCouponCode()">إنشاء كوبون</button>
+        <button class="back-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+
+        <!-- عرض الكود المولد -->
+        <div class="coupon-code" id="generatedCode"></div>
+    </div>
+
+    <script>
+        // إظهار الحقل المناسب بناءً على نوع الكوبون
+        function toggleCouponFields() {
+            var couponType = document.getElementById('couponType').value;
+            document.getElementById('discountField').style.display = 'none';
+            document.getElementById('fixedAmountField').style.display = 'none';
+            document.getElementById('inviteFriendsField').style.display = 'none';
+
+            if (couponType === 'discount') {
+                document.getElementById('discountField').style.display = 'block';
+            } else if (couponType === 'fixedAmount') {
+                document.getElementById('fixedAmountField').style.display = 'block';
+            } else if (couponType === 'inviteFriends') {
+                document.getElementById('inviteFriendsField').style.display = 'block';
+            }
+        }
+
+        // توليد كود الكوبون العشوائي
+        function generateCouponCode() {
+            var couponCode = 'COUPON-' + Math.floor(100000 + Math.random() * 900000).toString();
+            document.getElementById('couponCode').value = couponCode;
+            document.getElementById('generatedCode').textContent = "تم توليد الكوبون: " + couponCode;
+        }
+
+        // عرض الحقل الأولي عند تحميل الصفحة
+        toggleCouponFields();
+    </script>
+
+</body>
+</html>

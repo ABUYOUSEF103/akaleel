@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة التسويق</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            direction: rtl;
+            text-align: right;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        select, input[type="text"], textarea, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .checkbox-group, .radio-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end; /* لجعل الأزرار في الجهة اليسرى */
+            gap: 10px;
+            margin-bottom: 20px; /* لإضافة مسافة أسفل الأزرار */
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .back-button {
+            background-color: #f44336;
+            color: white;
+        }
+        .send-button {
+            background-color: #007BFF;
+            color: white;
+            margin-top: 20px;
+        }
+        .client-list {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>صفحة التسويق</h1>
+
+    <!-- الأزرار في الأعلى يسار -->
+    <div class="button-container" style="justify-content: flex-start;">
+        <button class="submit-button">حفظ الإعدادات</button>
+        <button class="back-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+    </div>
+
+    <div class="container">
+
+        <!-- الرسائل التسويقية العامة -->
+        <div class="section">
+            <div class="section-title">الرسائل التسويقية</div>
+            <div class="form-group">
+                <label for="message-text">نص الرسالة التسويقية</label>
+                <textarea id="message-text" rows="4" placeholder="اكتب هنا الرسالة التسويقية..."></textarea>
+            </div>
+
+            <!-- اختيار العملاء المستهدفين -->
+            <div class="form-group">
+                <label>إرسال الرسائل إلى</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="client-target" value="all-clients"> كل العملاء</label>
+                    <label><input type="radio" name="client-target" value="specific-client"> عميل محدد</label>
+                </div>
+            </div>
+
+            <!-- قائمة اختيار العميل المحدد -->
+            <div class="form-group client-list" id="client-list" style="display:none;">
+                <label for="client">اختر العميل</label>
+                <select id="client">
+                    <option value="">-- اختر عميل --</option>
+                    <option value="1">محمد بن عبدالله السالم</option>
+                    <option value="2">عبدالعزيز بن فهد العتيبي</option>
+                    <option value="3">سعود بن ناصر الدوسري</option>
+                    <option value="4">خالد بن علي الشهري</option>
+                    <option value="5">فيصل بن تركي المطيري</option>
+                </select>
+            </div>
+
+            <!-- زر إرسال تحت الرسائل التسويقية -->
+            <button class="send-button">إرسال الرسالة التسويقية</button>
+        </div>
+
+        <hr>
+
+        <!-- الرسائل الترحيبية عند الدخول -->
+        <div class="section">
+            <div class="section-title">الرسائل الترحيبية عند الدخول</div>
+            <div class="form-group">
+                <label for="welcome-message">نص الرسالة الترحيبية</label>
+                <textarea id="welcome-message" rows="4" placeholder="اكتب هنا الرسالة الترحيبية..."></textarea>
+            </div>
+
+            <!-- زر إرسال تحت الرسائل الترحيبية -->
+            <button class="send-button">إرسال الرسالة الترحيبية</button>
+        </div>
+
+        <hr>
+
+        <!-- الرسائل بعد خروج العميل -->
+        <div class="section">
+            <div class="section-title">الرسائل بعد خروج العميل</div>
+            <div class="form-group">
+                <label for="post-exit-message">نص الرسالة بعد خروج العميل</label>
+                <textarea id="post-exit-message" rows="4" placeholder="اكتب هنا الرسالة بعد خروج العميل..."></textarea>
+            </div>
+
+            <!-- زر إرسال تحت الرسائل بعد خروج العميل -->
+            <button class="send-button">إرسال الرسالة بعد خروج العميل</button>
+        </div>
+
+        <hr>
+
+        <!-- الرسائل بعد انقطاع العميل -->
+        <div class="section">
+            <div class="section-title">الرسائل بعد انقطاع العميل</div>
+            <div class="form-group">
+                <label for="inactive-message">نص الرسالة بعد انقطاع العميل</label>
+                <textarea id="inactive-message" rows="4" placeholder="اكتب هنا الرسالة بعد انقطاع العميل..."></textarea>
+            </div>
+
+            <!-- زر إرسال تحت الرسائل بعد انقطاع العميل -->
+            <button class="send-button">إرسال الرسالة بعد انقطاع العميل</button>
+        </div>
+
+        <hr>
+
+        <!-- الرسائل عند ترقية العضوية -->
+        <div class="section">
+            <div class="section-title">الرسائل عند ترقية العضوية</div>
+
+            <!-- اختيار العضوية -->
+            <div class="form-group">
+                <label>حدد نوع العضوية</label>
+                <select id="membership-type">
+                    <option value="gold">ذهبية</option>
+                    <option value="silver">فضية</option>
+                    <option value="bronze">برونزية</option>
+                    <option value="diamond">ألماسية</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="upgrade-message">نص الرسالة عند ترقية العضوية</label>
+                <textarea id="upgrade-message" rows="4" placeholder="اكتب هنا الرسالة الخاصة بترقية العضوية..."></textarea>
+            </div>
+
+            <!-- زر إرسال تحت الرسائل عند ترقية العضوية -->
+            <button class="send-button">إرسال الرسالة عند ترقية العضوية</button>
+        </div>
+
+    </div>
+
+    <script>
+        // إظهار أو إخفاء قائمة العملاء عند اختيار "عميل محدد"
+        document.querySelectorAll('input[name="client-target"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const clientList = document.getElementById('client-list');
+                if (this.value === 'specific-client') {
+                    clientList.style.display = 'block';
+                } else {
+                    clientList.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

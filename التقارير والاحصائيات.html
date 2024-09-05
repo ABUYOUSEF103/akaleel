@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقارير العملاء</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 0;
+            direction: rtl;
+            text-align: center;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar h3 {
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar ul li a:hover {
+            background-color: #444;
+        }
+        .main-content {
+            flex: 1;
+            padding-right: 300px; /* لضمان عدم تداخل المحتوى مع الشريط الجانبي */
+        }
+        .chart-container {
+            margin-bottom: 50px;
+            width: 40%;
+            margin: 0 auto;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end; /* لمحاذاة الأزرار إلى اليمين */
+            gap: 10px; /* مسافة بين الأزرار */
+            margin-bottom: 30px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .export-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .back-button {
+            background-color: #f44336;
+            color: white;
+        }
+        .export-button:hover {
+            background-color: #45a049;
+        }
+        .back-button:hover {
+            background-color: #e53935;
+        }
+    </style>
+    <!-- إضافة مكتبة Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- إضافة مكتبة Chart.js Datalabels Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body>
+
+    <!-- قائمة التقارير -->
+    <div class="sidebar">
+        <h3>تقارير العملاء</h3>
+        <ul>
+            <li><a href="#customerVisits">عدد العملاء حسب نوع العضوية</a></li>
+            <li><a href="#spending">معدل الإنفاق لكل نوع عضوية</a></li>
+            <li><a href="#activity">النشاط حسب ساعات اليوم</a></li>
+            <li><a href="#coupons">استخدام الكوبونات</a></li>
+            <li><a href="#ratings">تقييمات العملاء</a></li>
+            <li><a href="#bestDaysMonth">أفضل أيام الشهر</a></li>
+            <li><a href="#bestDaysYear">أفضل أيام السنة</a></li>
+            <li><a href="#bestMeals">أفضل الوجبات مبيعا</a></li>
+            <li><a href="#waitingTimes">أوقات الانتظار والزحام</a></li>
+        </ul>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+        <h1>تقارير العملاء وتحركاتهم</h1>
+
+        <!-- أزرار تصدير وعودة -->
+        <div class="button-container">
+            <button class="back-button"onclick="location.href='شاشة المدير.html';">رجوع</button>
+            <button class="export-button">تصدير التقارير</button>
+        </div>
+
+        <!-- تقرير عدد العملاء والزيارات -->
+        <div id="customerVisits" class="chart-container">
+            <h2>عدد العملاء حسب نوع العضوية</h2>
+            <canvas id="customerVisitsChart"></canvas>
+        </div>
+
+        <!-- تقرير معدل الإنفاق -->
+        <div id="spending" class="chart-container">
+            <h2>معدل الإنفاق لكل نوع عضوية</h2>
+            <canvas id="spendingChart"></canvas>
+        </div>
+
+        <!-- تقرير النشاط حسب الوقت -->
+        <div id="activity" class="chart-container">
+            <h2>النشاط حسب ساعات اليوم</h2>
+            <canvas id="activityChart"></canvas>
+        </div>
+
+        <!-- تقرير استخدام الخصومات والكوبونات -->
+        <div id="coupons" class="chart-container">
+            <h2>استخدام الكوبونات</h2>
+            <canvas id="couponsChart"></canvas>
+        </div>
+
+        <!-- تقرير تقييمات العملاء -->
+        <div id="ratings" class="chart-container">
+            <h2>تقييمات العملاء</h2>
+            <canvas id="customerRatingsChart"></canvas>
+        </div>
+
+        <!-- تقرير أفضل أيام الشهر -->
+        <div id="bestDaysMonth" class="chart-container">
+            <h2>أفضل أيام الشهر</h2>
+            <canvas id="bestDaysOfMonthChart"></canvas>
+        </div>
+
+        <!-- تقرير أفضل أيام السنة -->
+        <div id="bestDaysYear" class="chart-container">
+            <h2>أفضل أيام السنة</h2>
+            <canvas id="bestDaysOfYearChart"></canvas>
+        </div>
+
+        <!-- تقرير أفضل الوجبات مبيعا -->
+        <div id="bestMeals" class="chart-container">
+            <h2>أفضل الوجبات مبيعا</h2>
+            <canvas id="bestSellingMealsChart"></canvas>
+        </div>
+
+        <!-- تقرير أوقات الانتظار والزحام -->
+        <div id="waitingTimes" class="chart-container">
+            <h2>أوقات الانتظار والزحام</h2>
+            <canvas id="waitingTimesChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // بيانات عشوائية لاستخدامها في الرسوم البيانية، يمكن استبدالها ببيانات حقيقية
+        const customerVisitsData = {
+            labels: ['ذهبية', 'فضية', 'برونزية'],
+            datasets: [{
+                label: 'عدد العملاء',
+                data: [50, 75, 100], // بيانات عشوائية
+                backgroundColor: ['#FFD700', '#C0C0C0', '#CD7F32'],
+                borderColor: ['#FFD700', '#C0C0C0', '#CD7F32'],
+                borderWidth: 1
+            }]
+        };
+
+        const spendingData = {
+            labels: ['ذهبية', 'فضية', 'برونزية'],
+            datasets: [{
+                label: 'معدل الإنفاق (بالريال)',
+                data: [5000, 3000, 1500], // بيانات عشوائية
+                backgroundColor: ['#FFD700', '#C0C0C0', '#CD7F32'],
+                borderColor: ['#FFD700', '#C0C0C0', '#CD7F32'],
+                borderWidth: 1
+            }]
+        };
+
+        const activityData = {
+            labels: ['8 صباحاً', '12 ظهراً', '3 عصراً', '6 مساءً', '9 مساءً'],
+            datasets: [{
+                label: 'عدد الزيارات',
+                data: [10, 20, 30, 40, 35], // بيانات عشوائية
+                backgroundColor: '#007BFF',
+                borderColor: '#007BFF',
+                borderWidth: 1
+            }]
+        };
+
+        const couponsData = {
+            labels: ['خصم', 'دعوة', 'مبلغ ثابت'],
+            datasets: [{
+                label: 'استخدام الكوبونات',
+                data: [40, 25, 35], // بيانات عشوائية
+                backgroundColor: ['#FF5733', '#33FF57', '#3357FF'],
+                borderColor: ['#FF5733', '#33FF57', '#3357FF'],
+                borderWidth: 1
+            }]
+        };
+
+        const customerRatingsData = {
+            labels: ['1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10', '8/10', '9/10', '10/10'],
+            datasets: [{
+                label: 'عدد التقييمات',
+                data: [1, 2, 3, 5, 10, 20, 25, 30, 15, 10], // بيانات عشوائية
+                backgroundColor: '#FFC300',
+                borderColor: '#FF5733',
+                borderWidth: 1
+            }]
+        };
+
+        const bestDaysOfMonthData = {
+            labels: ['اليوم 1', 'اليوم 2', 'اليوم 3', 'اليوم 4', 'اليوم 5'],
+            datasets: [{
+                label: 'عدد الزيارات',
+                data: [50, 40, 45, 60, 70], // بيانات عشوائية
+                backgroundColor: '#28a745',
+                borderColor: '#28a745',
+                borderWidth: 1
+            }]
+        };
+
+        const bestDaysOfYearData = {
+            labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو'],
+            datasets: [{
+                label: 'عدد الزيارات',
+                data: [100, 120, 110, 130, 140], // بيانات عشوائية
+                backgroundColor: '#ff8c00',
+                borderColor: '#ff8c00',
+                borderWidth: 1
+            }]
+        };
+
+        const bestSellingMealsData = {
+            labels: ['برجر', 'بيتزا', 'شاورما', 'كبسة', 'سلطة'],
+            datasets: [{
+                label: 'عدد المبيعات',
+                data: [150, 100, 200, 120, 80], // بيانات عشوائية
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+                borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+                borderWidth: 1
+            }]
+        };
+
+        const waitingTimesData = {
+            labels: ['10-11 صباحاً', '11-12 ظهراً', '12-1 ظهراً', '1-2 ظهراً', '2-3 ظهراً'],
+            datasets: [{
+                label: 'متوسط وقت الانتظار (بالدقائق)',
+                data: [15, 10, 20, 25, 30], // بيانات عشوائية
+                backgroundColor: '#DC143C',
+                borderColor: '#DC143C',
+                borderWidth: 1
+            }]
+        };
+
+        // إضافة النسبة المئوية داخل الرسوم البيانية باستخدام Chart.js Datalabels
+        const plugins = [ChartDataLabels];
+
+        // رسم الرسوم البيانية باستخدام Chart.js
+        const customerVisitsChart = new Chart(document.getElementById('customerVisitsChart'), {
+            type: 'bar',
+            data: customerVisitsData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            },
+            plugins: plugins
+        });
+
+        const spendingChart = new Chart(document.getElementById('spendingChart'), {
+            type: 'bar',
+            data: spendingData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            },
+            plugins: plugins
+        });
+
+        const activityChart = new Chart(document.getElementById('activityChart'), {
+            type: 'line',
+            data: activityData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            },
+            plugins: plugins
+        });
+
+        const couponsChart = new Chart(document.getElementById('couponsChart'), {
+            type: 'doughnut',
+            data: couponsData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#fff',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                }
+            },
+            plugins: plugins
+        });
+
+        const customerRatingsChart = new Chart(document.getElementById('customerRatingsChart'), {
+            type: 'bar',
+            data: customerRatingsData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            },
+            plugins: plugins
+        });
+
+        const bestDaysOfMonthChart = new Chart(document.getElementById('bestDaysOfMonthChart'), {
+            type: 'bar',
+            data: bestDaysOfMonthData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            },
+            plugins: plugins
+        });
+
+        const bestDaysOfYearChart = new Chart(document.getElementById('bestDaysOfYearChart'), {
+            type: 'bar',
+            data: bestDaysOfYearData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            },
+            plugins: plugins
+        });
+
+        const bestSellingMealsChart = new Chart(document.getElementById('bestSellingMealsChart'), {
+            type: 'doughnut',
+            data: bestSellingMealsData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#fff',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                }
+            },
+            plugins: plugins
+        });
+
+        const waitingTimesChart = new Chart(document.getElementById('waitingTimesChart'), {
+            type: 'bar',
+            data: waitingTimesData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000',
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total * 100).toFixed(2) + '%';
+                            return percentage;
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            },
+            plugins: plugins
+        });
+    </script>
+
+</body>
+</html>

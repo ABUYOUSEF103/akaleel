@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعدادات الموقع</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0;
+            direction: rtl;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            background-color: #333;
+            color: white;
+            width: 250px;
+            padding: 20px;
+            height: 100vh;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .main-content {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .settings-section {
+            margin-bottom: 30px;
+        }
+        .settings-section input[type="text"], .settings-section select, .settings-section input[type="password"], .settings-section textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+        .hidden-section {
+            display: none; /* إخفاء الأقسام الخاصة مبدئيًا */
+        }
+        .divider {
+            border-top: 2px solid black;
+            margin: 40px 0;
+        }
+        /* تنسيق الأزرار العلوية */
+        .top-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .top-buttons button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .top-buttons .back-button {
+            background-color: #f44336;
+        }
+        .top-buttons button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>الإعدادات</h3>
+            <ul>
+                <li><a href="#coupons">إعدادات الكوبونات</a></li>
+                <li><a href="#gifts">إعدادات الإهداءات</a></li>
+                <li><a href="#memberships">إعدادات العضويات</a></li>
+                <li><a href="#marketing">إعدادات الرسائل التسويقية</a></li>
+                <li><a href="#account">إعدادات الحساب</a></li>
+                <li><a href="#security">إعدادات الأمان</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <!-- أزرار الحفظ والرجوع -->
+            <div class="top-buttons">
+                <button class="back-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+                <button class="save-button" onclick="location.href='شاشة المدير.html';">حفظ التغييرات</button>
+            </div>
+
+            <!-- إعدادات العضويات -->
+            <div id="memberships" class="settings-section">
+                <h2>إعدادات العضويات</h2>
+
+                <!-- عضوية ذهبية -->
+                <label for="gold-reward">عضوية ذهبية:</label>
+                <select id="gold-reward" onchange="toggleMembershipOptions('gold')">
+                    <option value="">-- اختر نوع المكافأة --</option>
+                    <option value="discount">خصم</option>
+                    <option value="meal">وجبة مجانية</option>
+                    <option value="cashback">استرجاع نقدي</option>
+                </select>
+                <div id="gold-options">
+                    <div id="gold-discount-section" class="hidden-section">
+                        <label for="gold-discount">نسبة الخصم:</label>
+                        <input type="text" id="gold-discount" placeholder="أدخل نسبة الخصم">
+                    </div>
+
+                    <div id="gold-meal-section" class="hidden-section">
+                        <label for="gold-meal">اسم الوجبة:</label>
+                        <input type="text" id="gold-meal" placeholder="أدخل اسم الوجبة">
+                    </div>
+
+                    <div id="gold-cashback-section" class="hidden-section">
+                        <label for="gold-cashback">قيمة الاسترجاع النقدي:</label>
+                        <input type="text" id="gold-cashback" placeholder="أدخل قيمة الاسترجاع النقدي">
+                    </div>
+                </div>
+
+                <!-- عضوية فضية -->
+                <label for="silver-reward">عضوية فضية:</label>
+                <select id="silver-reward" onchange="toggleMembershipOptions('silver')">
+                    <option value="">-- اختر نوع المكافأة --</option>
+                    <option value="discount">خصم</option>
+                    <option value="meal">وجبة مجانية</option>
+                    <option value="cashback">استرجاع نقدي</option>
+                </select>
+                <div id="silver-options">
+                    <div id="silver-discount-section" class="hidden-section">
+                        <label for="silver-discount">نسبة الخصم:</label>
+                        <input type="text" id="silver-discount" placeholder="أدخل نسبة الخصم">
+                    </div>
+
+                    <div id="silver-meal-section" class="hidden-section">
+                        <label for="silver-meal">اسم الوجبة:</label>
+                        <input type="text" id="silver-meal" placeholder="أدخل اسم الوجبة">
+                    </div>
+
+                    <div id="silver-cashback-section" class="hidden-section">
+                        <label for="silver-cashback">قيمة الاسترجاع النقدي:</label>
+                        <input type="text" id="silver-cashback" placeholder="أدخل قيمة الاسترجاع النقدي">
+                    </div>
+                </div>
+
+                <!-- عضوية برونزية -->
+                <label for="bronze-reward">عضوية برونزية:</label>
+                <select id="bronze-reward" onchange="toggleMembershipOptions('bronze')">
+                    <option value="">-- اختر نوع المكافأة --</option>
+                    <option value="discount">خصم</option>
+                    <option value="meal">وجبة مجانية</option>
+                    <option value="cashback">استرجاع نقدي</option>
+                </select>
+                <div id="bronze-options">
+                    <div id="bronze-discount-section" class="hidden-section">
+                        <label for="bronze-discount">نسبة الخصم:</label>
+                        <input type="text" id="bronze-discount" placeholder="أدخل نسبة الخصم">
+                    </div>
+
+                    <div id="bronze-meal-section" class="hidden-section">
+                        <label for="bronze-meal">اسم الوجبة:</label>
+                        <input type="text" id="bronze-meal" placeholder="أدخل اسم الوجبة">
+                    </div>
+
+                    <div id="bronze-cashback-section" class="hidden-section">
+                        <label for="bronze-cashback">قيمة الاسترجاع النقدي:</label>
+                        <input type="text" id="bronze-cashback" placeholder="أدخل قيمة الاسترجاع النقدي">
+                    </div>
+                </div>
+
+                <!-- عضوية ألماسية -->
+                <label for="diamond-reward">عضوية ألماسية:</label>
+                <select id="diamond-reward" onchange="toggleMembershipOptions('diamond')">
+                    <option value="">-- اختر نوع المكافأة --</option>
+                    <option value="discount">خصم</option>
+                    <option value="meal">وجبة مجانية</option>
+                    <option value="cashback">استرجاع نقدي</option>
+                </select>
+                <div id="diamond-options">
+                    <div id="diamond-discount-section" class="hidden-section">
+                        <label for="diamond-discount">نسبة الخصم:</label>
+                        <input type="text" id="diamond-discount" placeholder="أدخل نسبة الخصم">
+                    </div>
+
+                    <div id="diamond-meal-section" class="hidden-section">
+                        <label for="diamond-meal">اسم الوجبة:</label>
+                        <input type="text" id="diamond-meal" placeholder="أدخل اسم الوجبة">
+                    </div>
+
+                    <div id="diamond-cashback-section" class="hidden-section">
+                        <label for="diamond-cashback">قيمة الاسترجاع النقدي:</label>
+                        <input type="text" id="diamond-cashback" placeholder="أدخل قيمة الاسترجاع النقدي">
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- إعدادات الكوبونات -->
+            <div id="coupons" class="settings-section">
+                <h2>إعدادات الكوبونات</h2>
+                <label for="coupon-type">نوع الكوبون:</label>
+                <select id="coupon-type" onchange="toggleCouponOptions()">
+                    <option value="">-- اختر نوع الكوبون --</option>
+                    <option value="discount">خصم</option>
+                    <option value="invite">دعوة لعدد معين من الأشخاص</option>
+                    <option value="fixed-amount">مبلغ ثابت</option>
+                </select>
+
+                <div id="coupon-discount-options" class="hidden-section">
+                    <label for="discount-value">نسبة الخصم:</label>
+                    <input type="text" id="discount-value" placeholder="أدخل نسبة الخصم">
+                </div>
+
+                <div id="coupon-invite-options" class="hidden-section">
+                    <label for="invite-number">عدد الأشخاص المدعوين:</label>
+                    <input type="text" id="invite-number" placeholder="أدخل عدد الأشخاص">
+                </div>
+
+                <div id="coupon-fixed-options" class="hidden-section">
+                    <label for="fixed-amount">المبلغ الثابت (بالريال):</label>
+                    <input type="text" id="fixed-amount" placeholder="أدخل المبلغ الثابت">
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- إعدادات الإهداءات -->
+            <div id="gifts" class="settings-section">
+                <h2>إعدادات الإهداءات</h2>
+                <label for="gift-type">نوع الإهداء:</label>
+                <select id="gift-type" onchange="toggleGiftOptions()">
+                    <option value="">-- اختر نوع الإهداء --</option>
+                    <option value="meal">وجبة</option>
+                    <option value="discount">خصم</option>
+                    <option value="amount">مبلغ</option>
+                </select>
+
+                <div id="gift-meal-options" class="hidden-section">
+                    <label for="meal-name">اسم الوجبة:</label>
+                    <input type="text" id="meal-name" placeholder="أدخل اسم الوجبة">
+                </div>
+
+                <div id="gift-discount-options" class="hidden-section">
+                    <label for="gift-discount">نسبة الخصم:</label>
+                    <input type="text" id="gift-discount" placeholder="أدخل نسبة الخصم">
+                </div>
+
+                <div id="gift-amount-options" class="hidden-section">
+                    <label for="gift-amount">المبلغ (بالريال):</label>
+                    <input type="text" id="gift-amount" placeholder="أدخل المبلغ">
+                </div>
+
+                <!-- إضافة حقل لكتابة نص الإهداء -->
+                <label for="gift-message">نص الإهداء:</label>
+                <textarea id="gift-message" rows="3" placeholder="اكتب هنا عبارة الإهداء (50 حرفاً كحد أقصى)"></textarea>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- إعدادات الرسائل التسويقية -->
+            <div id="marketing" class="settings-section">
+                <h2>إعدادات الرسائل التسويقية</h2>
+                <label for="marketing-message">أدخل نص الرسالة التسويقية:</label>
+                <textarea id="marketing-message" rows="4" placeholder="أدخل نص الرسالة التسويقية..."></textarea>
+
+                <h2>طريقة إرسال الرسالة</h2>
+                <div class="radio-options">
+                    <label><input type="radio" name="message-type" value="whatsapp"> واتساب</label>
+                    <label><input type="radio" name="message-type" value="sms"> رسالة نصية</label>
+                    <label><input type="radio" name="message-type" value="email"> بريد الكتروني</label>
+                    <label><input type="radio" name="message-type" value="all"> عبر الكل</label>
+                </div>
+
+                <h2>إرسال الرسائل إلى</h2>
+                <div class="client-selection">
+                    <div class="radio-options">
+                        <label><input type="radio" name="client-target" value="all" onclick="toggleClientList(false)"> كل العملاء</label>
+                        <label><input type="radio" name="client-target" value="specific" onclick="toggleClientList(true)"> عميل محدد</label>
+                    </div>
+
+                    <div class="client-list" id="client-list">
+                        <label for="client-select">اختر العملاء:</label>
+                        <select id="client-select" multiple onchange="displaySelectedClient()">
+                            <option value="client1">محمد بن عبدالله السالم</option>
+                            <option value="client2">خالد بن علي الشهري</option>
+                            <option value="client3">عبدالعزيز بن فهد العتيبي</option>
+                            <option value="client4">سعود بن ناصر الدوسري</option>
+                            <option value="client5">فيصل بن تركي المطيري</option>
+                        </select>
+                    </div>
+
+                    <div id="selected-client" class="selected-client"></div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- إعدادات الحساب -->
+            <div id="account" class="settings-section">
+                <h2>إعدادات الحساب</h2>
+                <label for="username">اسم المستخدم:</label>
+                <input type="text" id="username" placeholder="أدخل اسم المستخدم">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="text" id="email" placeholder="أدخل البريد الإلكتروني">
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- إعدادات الأمان -->
+            <div id="security" class="settings-section">
+                <h2>إعدادات الأمان</h2>
+                <label for="password">كلمة المرور الجديدة:</label>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور الجديدة">
+                <label for="confirm-password">تأكيد كلمة المرور:</label>
+                <input type="password" id="confirm-password" placeholder="أعد إدخال كلمة المرور">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle membership options based on selection
+        function toggleMembershipOptions(membershipType) {
+            // إخفاء جميع الحقول أولاً
+            document.getElementById(`${membershipType}-discount-section`).style.display = 'none';
+            document.getElementById(`${membershipType}-meal-section`).style.display = 'none';
+            document.getElementById(`${membershipType}-cashback-section`).style.display = 'none';
+
+            // إظهار الحقل المناسب بناءً على الاختيار
+            const reward = document.getElementById(`${membershipType}-reward`).value;
+            if (reward === 'discount') {
+                document.getElementById(`${membershipType}-discount-section`).style.display = 'block';
+            } else if (reward === 'meal') {
+                document.getElementById(`${membershipType}-meal-section`).style.display = 'block';
+            } else if (reward === 'cashback') {
+                document.getElementById(`${membershipType}-cashback-section`).style.display = 'block';
+            }
+        }
+
+        // Toggle coupon options based on selection
+        function toggleCouponOptions() {
+            const couponType = document.getElementById('coupon-type').value;
+            document.getElementById('coupon-discount-options').style.display = (couponType === 'discount') ? 'block' : 'none';
+            document.getElementById('coupon-invite-options').style.display = (couponType === 'invite') ? 'block' : 'none';
+            document.getElementById('coupon-fixed-options').style.display = (couponType === 'fixed-amount') ? 'block' : 'none';
+        }
+
+        // Toggle gift options based on selection
+        function toggleGiftOptions() {
+            const giftType = document.getElementById('gift-type').value;
+            document.getElementById('gift-meal-options').style.display = (giftType === 'meal') ? 'block' : 'none';
+            document.getElementById('gift-discount-options').style.display = (giftType === 'discount') ? 'block' : 'none';
+            document.getElementById('gift-amount-options').style.display = (giftType === 'amount') ? 'block' : 'none';
+        }
+
+        // Toggle client list display based on user selection
+        function toggleClientList(show) {
+            const clientList = document.getElementById('client-list');
+            const selectedClient = document.getElementById('selected-client');
+            if (show) {
+                clientList.style.display = 'block';
+                selectedClient.style.display = 'none'; // إخفاء اسم العميل عند عرض القائمة
+            } else {
+                clientList.style.display = 'none';
+                selectedClient.style.display = 'none'; // إخفاء اسم العميل عند إخفاء القائمة
+            }
+        }
+
+        // Display selected client and hide the dropdown list
+        function displaySelectedClient() {
+            const clientSelect = document.getElementById('client-select');
+            const selectedClient = document.getElementById('selected-client');
+            const selectedOptions = Array.from(clientSelect.selectedOptions).map(option => option.text).join(', ');
+
+            // عرض اسم العميل المختار
+            selectedClient.textContent = `العميل المختار: ${selectedOptions}`;
+            selectedClient.style.display = 'block';
+
+            // إخفاء القائمة المنسدلة
+            document.getElementById('client-list').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شاشة انتظار العميل</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .waiting-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .waiting-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .waiting-container input[type="text"],
+        .waiting-container input[type="tel"],
+        .waiting-container input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .waiting-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .waiting-container button:hover {
+            background-color: #45a049;
+        }
+        .waiting-container .back-button {
+            background-color: #f44336;
+        }
+        .waiting-container .back-button:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <div class="waiting-container">
+        <h2>شاشة انتظار العميل</h2>
+        <form action="#">
+            <input type="text" name="username" placeholder="الاسم" required>
+            <input type="tel" name="phone" placeholder="رقم الجوال" required>
+            <input type="number" name="people_count" placeholder="عدد الأشخاص" min="1" required>
+            <button class="waiting-container" onclick="location.href='شاشة قائمة الانتظار7.HTML';">موافق</button>
+            <button class="back-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+        </form>
+    </div>
+</body>
+</html>

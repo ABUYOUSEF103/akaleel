@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة العملاء</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0;
+            direction: rtl; /* لتطبيق اتجاه الكتابة من اليمين إلى اليسار */
+            text-align: right;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 30%;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+        }
+        .stat-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        .clients-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .clients-table th, .clients-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .clients-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .back-button:hover {
+            background-color: #e53935;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF; /* لون الرابط */
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stats-container">
+        <div class="stat-box">
+            <h3>أفضل عميل كعدد زيارات</h3>
+            <p>محمد بن عبدالله السالم</p>
+            <p>عدد الزيارات: 20</p>
+        </div>
+        <div class="stat-box">
+            <h3>أفضل عميل كإجمالي مدفوعات</h3>
+            <p>خالد بن علي الشهري</p>
+            <p>إجمالي المدفوعات: 15,000 ريال</p>
+        </div>
+        <div class="stat-box">
+            <h3>أفضل عميل كأعلى فاتورة</h3>
+            <p>عبدالعزيز بن فهد العتيبي</p>
+            <p>أعلى فاتورة: 5,000 ريال</p>
+        </div>
+    </div>
+
+    <table class="clients-table">
+        <thead>
+            <tr>
+                <th>اسم العميل</th>
+                <th>رقم هاتف العميل</th>
+                <th>عدد زيارات العميل</th>
+                <th>تاريخ آخر زيارة</th>
+                <th>مدة الوقت المنقضي منذ آخر زيارة</th>
+                <th>نوع العضوية</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><a href="شاشة ملف العميل6.html">محمد بن عبدالله السالم</a></td><td>0500000001</td><td>20</td><td>2024-09-01</td><td>منذ 2 يوم</td><td>ذهبية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">عبدالعزيز بن فهد العتيبي</a></td><td>0500000002</td><td>15</td><td>2024-08-30</td><td>منذ 4 أيام</td><td>فضية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">سعود بن ناصر الدوسري</a></td><td>0500000003</td><td>5</td><td>2024-09-01</td><td>منذ 2 يوم</td><td>برونزية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">خالد بن علي الشهري</a></td><td>0500000004</td><td>18</td><td>2024-08-28</td><td>منذ 7 أيام</td><td>ذهبية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">فيصل بن تركي المطيري</a></td><td>0500000005</td><td>8</td><td>2024-09-01</td><td>منذ 2 يوم</td><td>فضية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">عبدالله بن محمد القحطاني</a></td><td>0500000006</td><td>12</td><td>2024-08-25</td><td>منذ 10 أيام</td><td>برونزية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">تركي بن عبدالرحمن الغامدي</a></td><td>0500000007</td><td>3</td><td>2024-09-02</td><td>منذ يوم واحد</td><td>ذهبية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">عبدالرحمن بن سعد الشمري</a></td><td>0500000008</td><td>18</td><td>2024-08-29</td><td>منذ 5 أيام</td><td>فضية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">سالم بن راشد الحربي</a></td><td>0500000009</td><td>7</td><td>2024-09-01</td><td>منذ 2 يوم</td><td>برونزية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">نواف بن عبدالله الزهراني</a></td><td>0500000010</td><td>14</td><td>2024-08-31</td><td>منذ 3 أيام</td><td>ذهبية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">فهد بن عبداللطيف البقمي</a></td><td>0500000011</td><td>11</td><td>2024-08-30</td><td>منذ 4 أيام</td><td>فضية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">علي بن حسن السبيعي</a></td><td>0500000012</td><td>4</td><td>2024-09-01</td><td>منذ 2 يوم</td><td>برونزية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">ماجد بن صالح المالكي</a></td><td>0500000013</td><td>9</td><td>2024-08-27</td><td>منذ 8 أيام</td><td>ذهبية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">عبدالرحمن بن صالح العنزي</a></td><td>0500000014</td><td>13</td><td>2024-08-26</td><td>منذ 9 أيام</td><td>فضية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">ياسر بن ناصر الغامدي</a></td><td>0500000015</td><td>2</td><td>2024-09-02</td><td>منذ يوم واحد</td><td>برونزية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">بندر بن عبدالله المطلق</a></td><td>0500000016</td><td>16</td><td>2024-08-31</td><td>منذ 3 أيام</td><td>ذهبية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">عبدالله بن صالح السهلي</a></td><td>0500000017</td><td>6</td><td>2024-09-01</td><td>منذ 2 يوم</td><td>فضية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">خالد بن محمد العتيبي</a></td><td>0500000018</td><td>19</td><td>2024-08-28</td><td>منذ 7 أيام</td><td>برونزية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">ناصر بن سعود القحطاني</a></td><td>0500000019</td><td>1</td><td>2024-09-02</td><td>منذ يوم واحد</td><td>ذهبية</td></tr>
+            <tr><td><a href="شاشة ملف العميل6.html">فواز بن عبدالله السبيعي</a></td><td>0500000020</td><td>17</td><td>2024-08-30</td><td>منذ 4 أيام</td><td>فضية</td></tr>
+        </tbody>
+    </table>
+
+    <div class="buttons-container">
+        <button class="back-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+        <button class="back-button" onclick="location.href='#';">تصدير</button>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الكوبونات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            direction: rtl;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.72em; /* تقليل حجم الخط بنسبة 20% */
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .export-button {
+            background-color: #4CAF50;
+            color: white;
+            margin-left: 10px;
+        }
+        .back-button {
+            background-color: #f44336;
+            color: white;
+        }
+        .checkbox-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>صفحة الكوبونات</h1>
+
+    <div class="container">
+        <!-- أزرار التصدير والرجوع -->
+        <div class="button-container">
+            <button class="export-button">تصدير الكوبونات</button>
+            <button class="back-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+        </div>
+
+        <!-- زر تحديد الكل -->
+        <div class="checkbox-container">
+            <input type="checkbox" id="selectAll" onclick="toggleSelectAll()">
+            <label for="selectAll">تحديد الكل</label>
+        </div>
+
+        <!-- جدول الكوبونات -->
+        <table>
+            <thead>
+                <tr>
+                    <th></th> <!-- عمود مربعات التحديد -->
+                    <th>الرقم</th>
+                    <th>تاريخ الإنشاء</th>
+                    <th>وقت الإنشاء</th>
+                    <th>كود الكوبون</th>
+                    <th>نوع الكوبون</th>
+                    <th>القيمة</th>
+                    <th>اسم المرسل</th>
+                    <th>رقم جوال المرسل</th>
+                    <th>اسم المرسل إليه</th>
+                    <th>رقم جوال المرسل إليه</th>
+                    <th>قيمة الكوبون</th>
+                    <th>حالة الدفع</th>
+                    <th>حالة الكوبون</th> <!-- تم نقله إلى آخر عمود -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- أمثلة كوبونات وهمية -->
+                <tr>
+                    <td><input type="checkbox" class="select-box"></td>
+                    <td>1</td>
+                    <td>2024-09-10</td>
+                    <td>02:30 مساءً</td>
+                    <td class="coupon-code"></td> <!-- سيتم توليد كود عشوائي هنا -->
+                    <td>خصم</td>
+                    <td>10%</td>
+                    <td>محمد السالم</td>
+                    <td>0500000001</td>
+                    <td>خالد الشهري</td>
+                    <td>0500000002</td>
+                    <td>100 ريال</td>
+                    <td>تم الدفع</td>
+                    <td>مستخدم</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="select-box"></td>
+                    <td>2</td>
+                    <td>2024-09-11</td>
+                    <td>03:00 مساءً</td>
+                    <td class="coupon-code"></td>
+                    <td>مبلغ ثابت</td>
+                    <td>50 ريال</td>
+                    <td>عبدالله القحطاني</td>
+                    <td>0500000003</td>
+                    <td>سعود الدوسري</td>
+                    <td>0500000004</td>
+                    <td>50 ريال</td>
+                    <td>لم يتم الدفع</td>
+                    <td>غير مستخدم</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="select-box"></td>
+                    <td>3</td>
+                    <td>2024-09-12</td>
+                    <td>01:15 مساءً</td>
+                    <td class="coupon-code"></td>
+                    <td>دعوة أصدقاء</td>
+                    <td>3 أصدقاء</td>
+                    <td>علي الغامدي</td>
+                    <td>0500000005</td>
+                    <td>عبدالرحمن الشمري</td>
+                    <td>0500000006</td>
+                    <td>150 ريال</td>
+                    <td>تم الدفع</td>
+                    <td>مستخدم</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="select-box"></td>
+                    <td>4</td>
+                    <td>2024-09-13</td>
+                    <td>12:45 مساءً</td>
+                    <td class="coupon-code"></td>
+                    <td>خصم</td>
+                    <td>15%</td>
+                    <td>فهد البقمي</td>
+                    <td>0500000007</td>
+                    <td>تركي المطيري</td>
+                    <td>0500000008</td>
+                    <td>150 ريال</td>
+                    <td>لم يتم الدفع</td>
+                    <td>غير مستخدم</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="select-box"></td>
+                    <td>5</td>
+                    <td>2024-09-14</td>
+                    <td>04:30 مساءً</td>
+                    <td class="coupon-code"></td>
+                    <td>مبلغ ثابت</td>
+                    <td>100 ريال</td>
+                    <td>سالم الحربي</td>
+                    <td>0500000009</td>
+                    <td>فيصل العتيبي</td>
+                    <td>0500000010</td>
+                    <td>100 ريال</td>
+                    <td>تم الدفع</td>
+                    <td>مستخدم</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // وظيفة لتحديد أو إلغاء تحديد الكل
+        function toggleSelectAll() {
+            var checkboxes = document.querySelectorAll('.select-box');
+            var selectAllCheckbox = document.getElementById('selectAll');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        }
+
+        // توليد كود الكوبون العشوائي المكون من 10 أرقام
+        function generateRandomCode() {
+            return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+        }
+
+        // إضافة الأكواد العشوائية إلى الجدول
+        document.querySelectorAll('.coupon-code').forEach(function(cell) {
+            cell.textContent = generateRandomCode();
+        });
+    </script>
+
+</body>
+</html>

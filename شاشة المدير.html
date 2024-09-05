@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الشاشة الرئيسية للمدير</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* لضبط الاتجاه إلى اليمين */
+            background-color: #f0f2f5;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .time {
+            font-size: 1.5em;
+        }
+        .header .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .header .user-info img {
+            border-radius: 50%;
+            margin-left: 10px;
+            width: 40px;
+            height: 40px;
+        }
+        .header .user-info span {
+            font-size: 1.2em;
+        }
+        .header .logo {
+            margin-left: 10px;
+        }
+        .header .logo img {
+            width: 50px; /* ضبط حجم الشعار */
+            height: auto;
+        }
+        .container {
+            display: flex;
+            height: calc(100vh - 50px); /* لتحديد ارتفاع الشاشة مع الأخذ في الاعتبار الهيدر */
+        }
+        .sidebar {
+            background-color: #333;
+            color: white;
+            width: 250px;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 150%; /* لضمان أن تشمل الخلفية الرمادية جميع الخيارات */
+        }
+        .sidebar h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: #ddd;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar ul li a:hover {
+            background-color: #444;
+        }
+        .main-content {
+            flex: 2;
+            padding: 20px;
+        }
+        .main-content h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .stats {
+            flex: 1;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+        }
+        .stats h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .stat-item {
+            margin-bottom: 20px; /* إضافة مسافة بين النصوص والرسوم البيانية */
+            font-size: 1.1em;
+            color: white;
+            background-color: #28a745; /* خلفية خضراء */
+            padding: 10px;
+            border-radius: 8px; /* زوايا دائرية للمستطيل */
+            text-align: center;
+        }
+        .chart-container {
+            margin-bottom: 30px;
+            width: 60%; /* تقليص حجم الرسوم الدائرية بنسبة 40% */
+            margin: 0 auto 30px; /* محاذاة الرسوم إلى المركز */
+        }
+    </style>
+    <!-- إضافة مكتبة Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="header">
+        <div class="time">10:30 AM</div>
+        <div class="user-info">
+            <span>أهلاً، المدير</span>
+            <div class="logo">
+                <img src="akalil-logo.png" alt="شعار أكاليل">
+            </div>
+            <img src="user-icon.png" alt="User Icon">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>القائمة الرئيسية</h3>
+            <ul>
+                <li><a href="التقارير والاحصائيات.html">التقارير والاحصائيات</a></li>
+                <li><a href="شاشة العملاء بيوزر المدير.html">العملاء</a></li>
+                <li><a href="شاشة تسجيل دخول عميل3.html">تسجيل دخول عميل</a></li>
+                <li><a href="شاشة تسجيل انتظار عميل 4.html">تسجيل انتظار عميل</a></li>
+                <li><a href="شاشة قائمة الانتظار7.HTML">عملاء الانتظار</a></li>
+                <li><a href="شاشة المستخدمون.html">المستخدمون</a></li>
+                <li><a href="شاشة تقييمات العملاء .html">تقييم العملاء</a></li>
+                <li><a href="شاشة الاهداءات.html">الإهداءات</a></li>
+                <li><a href="شاشة ارسال الاهداء لصديق خاصة للعميل8.HTML">انشاء اهداء</a></li>
+                <li><a href="شاشة الكوبونات.html">الكوبونات</a></li>
+                <li><a href="انشاء كوبون.html">انشاء كوبون</a></li>
+                <li><a href="شاشة التسويق.html">التسويق</a></li>
+                <li><a href="شاشة الاعدادات.html">الإعدادات</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>مرحباً بك في لوحة تحكم المدير</h1>
+            <p>اختر خياراً من القائمة على اليمين للبدء.</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span class="value">عدد الزوار اليوم حتى الآن:</span>
+                <span class="value">98 زائر</span>
+            </div>
+            <div class="stat-item">
+                <span class="value">عميل الانتظار الذي في الخدمة الآن:</span>
+                <span class="value">19</span>
+            </div>
+            <h3>إحصائيات اليوم</h3>
+            <div class="chart-container">
+                <canvas id="todayVsYesterday"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="todayVsLastMonth"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="monthlySales"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات الرسم البياني لليوم الحالي مقارنة باليوم السابق
+        var ctx1 = document.getElementById('todayVsYesterday').getContext('2d');
+        var todayVsYesterday = new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: ['اليوم الحالي', 'اليوم السابق'],
+                datasets: [{
+                    label: 'المبيعات',
+                    data: [1500, 1350], // مثال على بيانات المبيعات
+                    backgroundColor: ['green', 'red']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // بيانات الرسم البياني لليوم الحالي مقارنة بنفس اليوم من الشهر السابق
+        var ctx2 = document.getElementById('todayVsLastMonth').getContext('2d');
+        var todayVsLastMonth = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['اليوم الحالي', 'نفس اليوم من الشهر السابق'],
+                datasets: [{
+                    label: 'المبيعات',
+                    data: [1500, 1575], // مثال على بيانات المبيعات
+                    backgroundColor: ['red', 'green']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // بيانات الرسم البياني لإجمالي مبيعات الشهر حتى الآن مقارنة بنفس اليوم من الشهر السابق
+        var ctx3 = document.getElementById('monthlySales').getContext('2d');
+        var monthlySales = new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+                labels: ['هذا الشهر حتى الان', 'الشهر السابق'],
+                datasets: [{
+                    label: 'المبيعات',
+                    data: [45000, 42000], // مثال على بيانات المبيعات
+                    backgroundColor: ['green', 'red']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

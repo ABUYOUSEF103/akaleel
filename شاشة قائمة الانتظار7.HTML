@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>واجهة المستخدم</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* لضبط الاتجاه إلى اليمين */
+            background-color: #f0f2f5;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .header .time {
+            font-size: 1.5em;
+        }
+        .header .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .header .user-info img {
+            border-radius: 50%;
+            margin-right: 10px; /* استخدام margin-right بدلاً من margin-left */
+        }
+        .header .user-info span {
+            font-size: 1.2em;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .right-panel {
+            flex: 1;
+            background-color: #E6E6E6;
+            padding: 15px;
+            margin-left: 20px; /* استخدام margin-left لتحديد الجزء الأيمن */
+        }
+        .right-panel h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .waiting-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .waiting-list li {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .left-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .left-panel .buttons-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+        .left-panel button {
+            flex: 1;
+            padding: 20px;
+            font-size: 1.5em;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .left-panel .service-a {
+            background-color: #FF7F27;
+        }
+        .left-panel .service-b {
+            background-color: #22B14C;
+        }
+        .left-panel .service-c {
+            background-color: #A349A4;
+        }
+        .left-panel .special-call {
+            background-color: #FF7F27;
+        }
+        .current-service {
+            background-color: #999999;
+            color: white;
+            width: 95%; /* تقليل العرض */
+            text-align: center;
+            font-size: 4em;
+            padding: 20px; /* تصغير padding */
+            margin-bottom: 10px;
+            position: relative; /* لتعديل مكان النص */
+        }
+        .current-service::before {
+            content: "العميل الذي في الخدمة:";
+            position: absolute;
+            top: 45px;
+            right: 0;
+            left: 20;
+            font-size: .4em;
+            color: white;
+            text-align: center;
+        }
+        .current-service-info {
+            text-align: center;
+            font-size: 1.2em;
+            color: white;
+            background-color: #666666;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 98%;
+        }
+        .back-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #cd0e0e; /* لون الخلفية الأزرق */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .back-button:hover {
+            background-color: #ff0000; /* لون أغمق عند التمرير */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="time">10:30 AM</div>
+        <div class="user-info">
+            <span>أهلاً محمد الدخيل</span>
+            <img src="user-icon.png" alt="User Icon" width="40" height="40">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="right-panel"> <!-- وضع right-panel في الجزء الأيمن من الصفحة -->
+            <h3>قائمة الانتظار</h3>
+            <ul class="waiting-list">
+                <li><span>A 105</span><span>20 minute</span></li>
+                <li><span>A 106</span><span>19 minute</span></li>
+                <li><span>B 101</span><span>18 minute</span></li>
+                <li><span>A 107</span><span>17 minute</span></li>
+                <li><span>A 108</span><span>16 minute</span></li>
+                <li><span>B 102</span><span>15 minute</span></li>
+                <li><span>A 109</span><span>14 minute</span></li>
+                <li><span>A 110</span><span>13 minute</span></li>
+                <li><span>C 101</span><span>12 minute</span></li>
+            </ul>
+        </div>
+
+        <div class="left-panel"> <!-- تخصيص left-panel للجزء الرئيسي من الصفحة -->
+            <div class="buttons-row"> <!-- وضع الأزرار بجانب بعض -->
+                <button class="service-a">استدعاء A</button>
+                <button class="service-b">استدعاء B</button>
+                <button class="service-c">استدعاء C</button>
+                <button class="special-call">استدعاء خاص</button>
+            </div>
+            <div class="current-service">C 101</div>
+            <div class="current-service-info">
+                <div>في الانتظار حتى الآن: 9 عملاء</div>
+                <div>مجموع من تمت خدمتهم: 32 عميل</div>
+            </div>
+            <button class="back-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+        </div>
+    </div>
+
+</body>
+</html>

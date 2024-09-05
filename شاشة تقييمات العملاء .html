@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقييم العملاء</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            direction: rtl;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .low-rating {
+            background-color: #f8d7da;
+        }
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .export-button {
+            background-color: #4CAF50;
+            color: white;
+            margin-left: 10px;
+        }
+        .back-button {
+            background-color: #f44336;
+            color: white;
+        }
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-container {
+            flex: 1;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .filter-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .filter-container select, .filter-container input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        #dateFilter {
+            width: 70%;
+            padding: 5px;
+        }
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter-buttons button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>تقييم العملاء</h1>
+    
+    <div class="container">
+        <!-- فلاتر التقييمات -->
+        <div class="filters">
+            <div class="filter-container">
+                <label for="ratingFilter">فلتر حسب التقييم:</label>
+                <select id="ratingFilter">
+                    <option value="all">الكل</option>
+                    <option value="above-8">أعلى من 8</option>
+                    <option value="between-5-8">بين 5 و 8</option>
+                    <option value="below-5">أقل من 5</option>
+                </select>
+            </div>
+            <div class="filter-container">
+                <label for="dateFilter">فلتر حسب التاريخ:</label>
+                <input type="date" id="dateFilter">
+            </div>
+            <div class="filter-container">
+                <label for="timeFilter">فلتر حسب الوقت:</label>
+                <select id="timeFilter">
+                    <option value="all">الكل</option>
+                    <option value="breakfast">الفطور (6 صباحاً - 10 صباحاً)</option>
+                    <option value="lunch">الغداء (12 ظهراً - 3 مساءً)</option>
+                    <option value="dinner">العشاء (6 مساءً - 9 مساءً)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- أزرار التصدير والرجوع -->
+        <div class="filter-buttons">
+            <button class="export-button">تصدير التقييمات</button>
+            <button class="back-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+        </div>
+
+        <!-- جدول التقييمات -->
+        <table>
+            <thead>
+                <tr>
+                    <th>الرقم</th>
+                    <th>اسم العميل</th>
+                    <th>رقم الجوال</th>
+                    <th>التقييم</th>
+                    <th>ملاحظات</th>
+                    <th>تاريخ التقييم</th>
+                    <th>وقت التقييم</th>
+                    <th>تحويل التقييم</th>
+                </tr>
+            </thead>
+            <tbody id="ratingsTable">
+                <!-- تقييمات وهمية -->
+                <tr class="low-rating">
+                    <td>1</td>
+                    <td>محمد بن عبدالله</td>
+                    <td>0500000001</td>
+                    <td>3/10</td>
+                    <td>الخدمة كانت سيئة</td>
+                    <td>2024-09-10</td>
+                    <td>07:00 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>عبدالعزيز بن فهد العتيبي</td>
+                    <td>0500000002</td>
+                    <td>9/10</td>
+                    <td>خدمة ممتازة</td>
+                    <td>2024-09-11</td>
+                    <td>06:30 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>سعود بن ناصر الدوسري</td>
+                    <td>0500000003</td>
+                    <td>7/10</td>
+                    <td>الخدمة كانت جيدة</td>
+                    <td>2024-09-12</td>
+                    <td>06:45 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>خالد بن علي الشهري</td>
+                    <td>0500000004</td>
+                    <td>8/10</td>
+                    <td>خدمة جيدة</td>
+                    <td>2024-09-13</td>
+                    <td>07:15 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr class="low-rating">
+                    <td>5</td>
+                    <td>فيصل بن تركي المطيري</td>
+                    <td>0500000005</td>
+                    <td>4/10</td>
+                    <td>مقبولة</td>
+                    <td>2024-09-14</td>
+                    <td>08:00 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>عبدالله بن محمد القحطاني</td>
+                    <td>0500000006</td>
+                    <td>9/10</td>
+                    <td>ممتازة</td>
+                    <td>2024-09-15</td>
+                    <td>08:15 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>ماجد بن صالح المالكي</td>
+                    <td>0500000007</td>
+                    <td>10/10</td>
+                    <td>ممتازة جداً</td>
+                    <td>2024-09-16</td>
+                    <td>08:45 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>فهد بن عبداللطيف البقمي</td>
+                    <td>0500000008</td>
+                    <td>6/10</td>
+                    <td>متوسطة</td>
+                    <td>2024-09-17</td>
+                    <td>09:00 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>تركي بن عبدالرحمن الغامدي</td>
+                    <td>0500000009</td>
+                    <td>7/10</td>
+                    <td>جيدة</td>
+                    <td>2024-09-18</td>
+                    <td>06:30 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr class="low-rating">
+                    <td>10</td>
+                    <td>سالم بن راشد الحربي</td>
+                    <td>0500000010</td>
+                    <td>2/10</td>
+                    <td>سيئة</td>
+                    <td>2024-09-19</td>
+                    <td>07:30 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>عبدالرحمن بن سعد الشمري</td>
+                    <td>0500000011</td>
+                    <td>8/10</td>
+                    <td>مقبولة</td>
+                    <td>2024-09-20</td>
+                    <td>07:45 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+                <tr class="low-rating">
+                    <td>12</td>
+                    <td>خالد بن محمد العتيبي</td>
+                    <td>0500000012</td>
+                    <td>3/10</td>
+                    <td>سيئة جداً</td>
+                    <td>2024-09-21</td>
+                    <td>08:30 مساءً</td> <!-- تغيير الوقت إلى العشاء -->
+                    <td>
+                        <select>
+                            <option value="general-manager">المدير العام</option>
+                            <option value="chef">الشيف العمومي</option>
+                            <option value="operations-manager">مدير التشغيل</option>
+                            <option value="floor-manager">مدير الصالات</option>
+                        </select>
+                        <button class="whatsapp-button">إرسال</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // وظيفة لتحويل التقييم عبر الواتساب
+        const whatsappButtons = document.querySelectorAll('.whatsapp-button');
+        whatsappButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const selectedOption = this.previousElementSibling.value;
+                let message = `تم تحويل التقييم إلى ${selectedOption}`;
+                alert(message);
+            });
+        });
+
+        // تلوين الصفوف بناءً على التقييم
+        const rows = document.querySelectorAll('#ratingsTable tr');
+        rows.forEach((row, index) => {
+            const ratingText = row.children[3].textContent;
+            const rating = parseInt(ratingText);
+            if (rating < 4) {
+                row.classList.add('low-rating');
+            }
+            row.children[0].textContent = index + 1; // إضافة الرقم التسلسلي
+        });
+
+        // فلترة حسب التقييم
+        document.getElementById('ratingFilter').addEventListener('change', function() {
+            const filterValue = this.value;
+            rows.forEach(row => {
+                const rating = parseInt(row.children[3].textContent);
+                if (filterValue === 'all') {
+                    row.style.display = '';
+                } else if (filterValue === 'above-8' && rating > 8) {
+                    row.style.display = '';
+                } else if (filterValue === 'between-5-8' && rating >= 5 && rating <= 8) {
+                    row.style.display = '';
+                } else if (filterValue === 'below-5' && rating < 5) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // فلترة حسب الوقت
+        document.getElementById('timeFilter').addEventListener('change', function() {
+            const filterValue = this.value;
+            rows.forEach(row => {
+                const time = row.children[6].textContent;
+                const [timeStr, period] = time.split(' ');
+                const [hour] = timeStr.split(':').map(Number);
+
+                let showRow = false;
+
+                if (filterValue === 'all') {
+                    showRow = true;
+                } else if (filterValue === 'breakfast' && ((hour >= 6 && hour < 10) && period === 'صباحاً')) {
+                    showRow = true;
+                } else if (filterValue === 'lunch' && ((hour >= 12 && hour <= 3) && period === 'مساءً')) {
+                    showRow = true;
+                } else if (filterValue === 'dinner' && (hour >= 6 && hour <= 9 && period === 'مساءً')) {
+                    showRow = true;
+                }
+
+                row.style.display = showRow ? '' : 'none';
+            });
+        });
+
+        // فلترة حسب التاريخ
+        document.getElementById('dateFilter').addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            rows.forEach(row => {
+                const rowDate = new Date(row.children[5].textContent);
+                row.style.display = selectedDate.toDateString() === rowDate.toDateString() ? '' : 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>

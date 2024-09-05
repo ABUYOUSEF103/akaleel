@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شاشة خيار الإهداء</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* لضبط الاتجاه إلى اليمين */
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .gift-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: right;
+        }
+        .gift-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+        }
+        .gift-container img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 150px;
+            height: 150px;
+        }
+        .gift-container label {
+            font-size: 1em;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .gift-container input[type="text"],
+        .gift-container input[type="tel"],
+        .gift-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            box-sizing: border-box;
+            text-align: right; /* النص يبدأ من اليمين */
+            direction: rtl; /* النص يتبع اتجاه الكتابة من اليمين */
+        }
+        .gift-container textarea {
+            height: 60px;
+            resize: none;
+        }
+        .gift-container .note {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .gift-container .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .gift-container button {
+            flex: 1;
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+        .gift-container .send-button {
+            background-color: #007BFF;
+        }
+        .gift-container .cancel-button {
+            background-color: #FF4B4B;
+        }
+        .gift-container button:hover {
+            opacity: 0.9;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px; /* ضبط حجم الشعار */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="gift-container">
+        <div class="logo">
+            <img src="akalil-logo.png" alt="شعار مطعم أكاليل">
+        </div>
+        <h2>إهداء المكافأت للاصدقاء</h2>
+        <!-- الباركود الخاص بالإهداء -->
+
+        <!-- الحقول المطلوبة -->
+        <label for="friend-name">اسم الصديق</label>
+        <input type="text" id="friend-name" placeholder="أدخل اسم الصديق">
+
+        <label for="friend-phone">رقم جوال الصديق</label>
+        <input type="tel" id="friend-phone" placeholder="أدخل رقم جوال الصديق">
+
+        <label for="customer-name">اسم العميل</label>
+        <input type="text" id="customer-name" placeholder="أدخل اسمك">
+
+        <label for="customer-phone">رقم جوال العميل</label>
+        <input type="tel" id="customer-phone" placeholder="أدخل رقم جوالك">
+
+        <div class="note">
+            الاهداء يتم تفعيله بعد 24 ساعة من الإرسال
+        </div>
+
+        <label for="gift-message">عبارة الإهداء</label>
+        <textarea id="gift-message" maxlength="50" placeholder="ادخل هنا عبارة الإهداء.... 50 حرف"></textarea>
+
+        <!-- الأزرار -->
+        <div class="buttons">
+            <button class="send-button">إرسال الإهداء</button>
+            <button class="cancel-button">إلغاء</button>
+            <button class="cancel-button" onclick="location.href='شاشة المدير.html';">رجوع</button>
+        </div>
+    </div>
+
+</body>
+</html>
